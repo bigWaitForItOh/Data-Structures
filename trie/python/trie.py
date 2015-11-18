@@ -29,7 +29,9 @@ class Trie:
 
 	def search (self, current_node, string, start_pos = 0):
 		if (string [start_pos] in current_node.successors ()):
-			return (True if (start_pos == len (string) - 1) else self.search (current_node.get_child (string [start_pos]), string, start_pos + 1));
+			if (start_pos == len (string) - 1):
+				return (True);
+			return (self.search (current_node.get_child (string [start_pos]), string, start_pos + 1));
 		return (False);
 
 	def describe (self):
