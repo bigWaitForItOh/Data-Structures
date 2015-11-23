@@ -54,11 +54,9 @@ class Trie:
 		pass;
 
 if (__name__ ==  '__main__'):
+	data = [ ('Stuxnet', 2010), ('Shellshock', 2014), ('Morris', 1988), ('Heartbleed', 2014) ];
 	myT = Trie ();
-	myT.insert (myT.get_root (), 'Stuxnet', 2010);
-	myT.insert (myT.get_root (), 'Shellshock', 2014);
-	myT.insert (myT.get_root (), 'Morris', 1988);
-	myT.insert (myT.get_root (), 'Heartbleed', 2014);
 
+	for pair in data: myT.insert (myT.get_root (), pair [0], pair [1]);
 	print (myT.search (myT.get_root (), input ()));
 #	myT.describe ();
