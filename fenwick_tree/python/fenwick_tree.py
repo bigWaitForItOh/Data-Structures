@@ -9,13 +9,9 @@
 
 class FenTree (object):
 	def __init__ (self, array):
-		self.array = array;
-		self.construct_tree ();
-
-	def construct_tree (self):
-		self.tree = [0 for i in range (len (self.array) + 1)];
-		for i in range (len (self.array)):
-			self.update (i, self.array [i]);
+		self.array, self.tree = [0] * len (array), [0] * (len (array) + 1);
+		for i in range (len (array)):
+			self.update (i, array [i]);
 
 	def get_parent (self, child):
 		return (child - (child & -child));
@@ -24,6 +20,8 @@ class FenTree (object):
 		return (index + (index & -index));
 
 	def update (self, index, item):
+		current, self.array [index] = self.array [index], item;
+		item -= current;
 		index += 1;
 		while (index <= len (self.array)):
 			self.tree [index] += item;
@@ -38,8 +36,7 @@ class FenTree (object):
 		return (total);
 
 	def range_sum (self, x, y):
-		x, y = min (x, y), max (x, y);
-		return (self.prefix_sum (y) - self.prefix_sum (x-1));
+		return (self.prefix_sum (max (x, y)) - self.prefix_sum (min (x, y) - 1));
 
 	def describe (self):
 		print ('ARRAY =>\t', self.array);
@@ -47,6 +44,9 @@ class FenTree (object):
 
 if (__name__ == '__main__'):
 #	tree = FenTree ([3,2,-1,6,5,4]);
-	tree = FenTree ([int (i) for i in input ().split ()]);
+	tree = FenTree ([int (i) for i in input ('Enter the array (space-separated integers): ').split ()]);
 	tree.describe ();
-	print (tree.range_sum (2, 5));
+	tree.update (4, 8);
+	tree.describe ();
+	print (tree.range_sum (1, 5));
+	print (tree.prefix_sum (5));
