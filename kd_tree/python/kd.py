@@ -1,5 +1,5 @@
 ##########################################################################################################
-#Implementation of KD Tree - Construction (throguh insert ()), find_minimum (), delete ()
+#Implementation of KD Tree - Construction (through insert ()), find_minimum (), delete ()
 ##########################################################################################################
 
 class Node (object):
